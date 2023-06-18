@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bankings",
+  "info": {
+    "singularName": "banking",
+    "pluralName": "bankings",
+    "displayName": "Banking"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "lastname": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "Password": {
+      "type": "password"
+    },
+    "Balance": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    }
+  }
+}

@@ -1,0 +1,99 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import CustomTooltip from './CustomTooltip';
+import { useState, useEffect } from 'react';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'; // Importing Bootstrap components
+
+function NavBar(){
+
+    const [currentDateTime, setCurrentDateTime] = useState(new Date());
+  
+    useEffect(() => {
+      const timer = setInterval(() => {
+        setCurrentDateTime(new Date());
+      }, 1000);
+  
+      return () => {
+        clearInterval(timer);
+      };
+    }, []);
+  
+  return(
+    <>
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href="/Home/">CyberBank</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link href="/Home/">
+            <CustomTooltip tooltipText="Banking in Cyber-Space">
+              CyberBank Home Page
+            </CustomTooltip>
+          </Nav.Link>
+          <Nav.Link href="/CreateAccount/">
+            <CustomTooltip tooltipText="Become a CyberBank Account Holder">
+              Create Account
+            </CustomTooltip>
+          </Nav.Link>
+          <li className="nav-item">
+            <CustomTooltip tooltipText="Banking in Cyber-Space">
+              <Link className="nav-link" to="/Home/">CyberBank Home Page</Link>
+            </CustomTooltip>
+          </li>
+          <li className="nav-item">
+            <CustomTooltip tooltipText="Become a CyberBank Account Holder">
+              <Link className="nav-link" to="/CreateAccount/">Create Account</Link>
+            </CustomTooltip>
+          </li>
+          <li className="nav-item">
+            <CustomTooltip tooltipText="Make A deposit into your account">
+              <Link className="nav-link" to="/Deposit/">Deposit</Link>
+            </CustomTooltip>
+          </li>
+          <li className="nav-item">
+            <CustomTooltip tooltipText="Make a Withdraw">
+              <Link className="nav-link" to="/Withdraw/">Withdraw</Link>
+            </CustomTooltip>
+          </li>
+          <li className="nav-item">
+            <CustomTooltip tooltipText="View your Transaction History ">
+              <Link className="nav-link" to="/AllData/">AllData</Link>
+            </CustomTooltip>
+          </li>         <li className="nav-item">
+            <span className="nav-link font-weight-bold text-align-right">{currentDateTime.toLocaleString()}</span>
+          </li>
+        </ul>
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <CustomTooltip tooltipText="Login to your Account">
+              <Link className="nav-link" to="/Login/">Login to Account</Link>
+            </CustomTooltip>
+          </li>
+        </ul>
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <CustomTooltip tooltipText="Logout from your account">
+              <Link className="nav-link" to="/Logout/">Logout</Link>
+            </CustomTooltip>
+          </li>
+          {/* Add the rest of your links here */}
+        </Nav>
+        <Nav>
+          <Nav.Link href="/Login/">
+            <CustomTooltip tooltipText="Login to your Account">
+              Login to Account
+            </CustomTooltip>
+          </Nav.Link>
+          <Nav.Link href="/Logout/">
+            <CustomTooltip tooltipText="Logout from your account">
+              Logout
+            </CustomTooltip>
+          </Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+    </>
+  );
+}
+
+export default NavBar;

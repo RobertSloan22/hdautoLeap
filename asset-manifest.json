@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/hdautoLeap/static/css/main.cbefd31e.css",
+    "main.js": "/hdautoLeap/static/js/main.a4a6feba.js",
+    "index.html": "/hdautoLeap/index.html",
+    "main.cbefd31e.css.map": "/hdautoLeap/static/css/main.cbefd31e.css.map",
+    "main.a4a6feba.js.map": "/hdautoLeap/static/js/main.a4a6feba.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cbefd31e.css",
+    "static/js/main.a4a6feba.js"
+  ]
+}

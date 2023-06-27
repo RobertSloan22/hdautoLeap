@@ -1,7 +1,7 @@
 import React from 'react';
 import { UserContext } from './Context';
 import { Card } from './Context';
-import './CreateAccount.css'
+import './CreateAccount.module.css'
 
 function CreateAccount(){
   const [show, setShow] = React.useState(true);

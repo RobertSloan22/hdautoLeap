@@ -3,8 +3,8 @@ import { CustomerContext } from './CustomerContext';
 import { Modal, Button } from 'react-bootstrap';
 
 const Customers = () => {
-  const { customers } = useContext(CustomerContext);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const { customers } = useContext(CustomerContext);
 
   const handleShowDetails = (customer) => {
     setSelectedCustomer(customer);
@@ -37,7 +37,20 @@ const Customers = () => {
             <p><strong>First Name:</strong> {selectedCustomer.firstName}</p>
             <p><strong>Last Name:</strong> {selectedCustomer.lastName}</p>
             <p><strong>Vehicle:</strong> {selectedCustomer.vehicle}</p>
+            <p><strong>Vehicle VIN:</strong> {selectedCustomer.vehicleVIN}</p>
+            <p><strong>Vehicle Year:</strong> {selectedCustomer.vehicleYear}</p>
+            <p><strong>Vehicle Make:</strong> {selectedCustomer.vehicleMake}</p>
+            <p><strong>Vehicle Model:</strong> {selectedCustomer.vehicleModel}</p>
+            <p><strong>Vehicle Mileage:</strong> {selectedCustomer.vehicleMileage}</p>
+            <p><strong>Vehicle Engine:</strong> {selectedCustomer.vehicleEngine}</p>
             <p><strong>Phone Number:</strong> {selectedCustomer.phoneNumber}</p>
+            <p><strong>Email:</strong> {selectedCustomer.email}</p>
+            <p><strong>Address:</strong> {selectedCustomer.address}</p>
+            <p><strong>City:</strong> {selectedCustomer.city}</p>
+            <p><strong>State:</strong> {selectedCustomer.state}</p>
+            <p><strong>Zip Code:</strong> {selectedCustomer.zipCode}</p>
+            <p><strong>Country:</strong> {selectedCustomer.country}</p>
+            <p><strong>Notes:</strong> {selectedCustomer.notes}</p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>

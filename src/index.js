@@ -16,33 +16,40 @@ import CustomerEntry from './CustomerEntry';
 import { CustomerProvider } from './CustomerContext'; // Import CustomerProvider
 import Customers from './Customers'; // Import Customers
 import Inspection from './Inspection';
+import WebcamCapture from './WebcamCapture';
+import ListGroup from './ListGroup';
+function App() {
+  return (
+    <HashRouter>
+      <AuthProvider>
+        <NavBar/>
+       
+        <CustomerProvider> {/* Wrap your application with CustomerProvider */}
+          <UserProvider> {/* Use UserProvider instead of UserContext.Provider */}
+            <BalanceProvider>  {/* Wrap your Routes in BalanceProvider */}
+              <div className="container" style={{padding: "20px"}}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/Home/" element={<Home />} />
+                  <Route path="/CreateAccount/" element={<CreateAccount />} />
+                  <Route path="/Deposit/" element={<Deposit />} />
+                  <Route path="/Withdraw/" element={<Withdraw />} />
+                  <Route path="/AllData/" element={<AllData />} />
+                  <Route path="/Login/" element={<Login />} />
+                  <Route path="/CustomerEntry/" element={<CustomerEntry />} />
+                  <Route path="/Customers/" element={<Customers />} /> {/* Add Customers route */} 
+                  <Route path="/Inspection/" element={<Inspection />} /> {/* Add Inspection route */} 
+                  <Route path="/WebcamCapture/" element={<WebcamCapture />} /> {/* Add WebcamCapture route */}
+                  <Route path="/ListGroup/" element={<ListGroup />} /> {/* Add ListGroup route */}
+                </Routes>
+              </div>
+            </BalanceProvider>
+          </UserProvider> 
+        </CustomerProvider>
+       
+      </AuthProvider>     
+    </HashRouter>
+  );
+}
 
-
-ReactDOM.render(
-  <HashRouter>
-    <AuthProvider>
-      <NavBar/>
-      <CustomerProvider> {/* Wrap your application with CustomerProvider */}
-        <UserProvider> {/* Use UserProvider instead of UserContext.Provider */}
-          <BalanceProvider>  {/* Wrap your Routes in BalanceProvider */}
-            <div className="container" style={{padding: "20px"}}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/Home/" element={<Home />} />
-                <Route path="/CreateAccount/" element={<CreateAccount />} />
-                <Route path="/Deposit/" element={<Deposit />} />
-                <Route path="/Withdraw/" element={<Withdraw />} />
-                <Route path="/AllData/" element={<AllData />} />
-                <Route path="/Login/" element={<Login />} />
-                <Route path="/CustomerEntry/" element={<CustomerEntry />} />
-                <Route path="/Customers/" element={<Customers />} /> {/* Add Customers route */} 
-                <Route path="/Inspection/" element={<Inspection />} /> {/* Add Inspection route */} 
-              </Routes>
-            </div>
-          </BalanceProvider>
-        </UserProvider> 
-      </CustomerProvider>
-    </AuthProvider>     
-  </HashRouter>,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));

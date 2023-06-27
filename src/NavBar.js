@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import CustomTooltip from './CustomTooltip';
 import { useState, useEffect } from 'react';
 import { Navbar, Nav } from 'react-bootstrap'; // Importing Bootstrap components
-
+// import the styling from NavBar.css
+import './NavBar.module.css';
 function NavBar(){
 
     const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -20,48 +21,59 @@ function NavBar(){
   
   return(
     <>
+    <div className="NavBar">
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand as={Link} to="/Home/">CyberBank</Navbar.Brand>
+      <Navbar.Brand as={Link} to="/Home/">Harlem & Division-Launch Pad</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Item>
-            <CustomTooltip tooltipText="Banking in Cyber-Space">
+            <CustomTooltip tooltipText="MAIN DASHBOARD">
               <Nav.Link as={Link} to="/Home/">Harlem Division Auto Repair</Nav.Link>
             </CustomTooltip>
           </Nav.Item>
           <Nav.Item>
-            <CustomTooltip tooltipText="Become a CyberBank Account Holder">
+            <CustomTooltip tooltipText="New Customers">
               <Nav.Link as={Link} to="/CreateAccount/">Create Customer Portal</Nav.Link>
             </CustomTooltip>
           </Nav.Item>
           <Nav.Item>
-            <CustomTooltip tooltipText="Make A deposit into your account">
+            <CustomTooltip tooltipText="Scheduling">
               <Nav.Link as={Link} to="/Deposit/">Appointments</Nav.Link>
             </CustomTooltip>
           </Nav.Item>
           <Nav.Item>
-            <CustomTooltip tooltipText="Make a Withdraw">
+            <CustomTooltip tooltipText="Estimate/inProgress-Invoices">
               <Nav.Link as={Link} to="/Withdraw/">Invoices</Nav.Link>
             </CustomTooltip>
           </Nav.Item>
           <Nav.Item>
-            <CustomTooltip tooltipText="View your Transaction History ">
+            <CustomTooltip tooltipText="Active Work">
+              <Nav.Link as={Link} to="/ListGroup/">Invoices</Nav.Link>
+            </CustomTooltip>
+          </Nav.Item>
+          <Nav.Item>
+            <CustomTooltip tooltipText="All open Tickets and Active Work">
               <Nav.Link as={Link} to="/AllData/">AllData</Nav.Link>
             </CustomTooltip>
           </Nav.Item>  
           <Nav.Item>
-            <CustomTooltip tooltipText="View your Transaction History ">
+            <CustomTooltip tooltipText="New Customer Setup ">
               <Nav.Link as={Link} to="/CustomerEntry/">CustomerEntry</Nav.Link>
             </CustomTooltip>
           </Nav.Item>    
           <Nav.Item>
-            <CustomTooltip tooltipText="View your Transaction History ">
+            <CustomTooltip tooltipText="Customer Database">
               <Nav.Link as={Link} to="/Customers/">Customer data</Nav.Link>
             </CustomTooltip>
-          </Nav.Item>       
+          </Nav.Item>     
           <Nav.Item>
-            <CustomTooltip tooltipText="View your Transaction History ">
+            <CustomTooltip tooltipText="ComputerVision Vin Decoder">
+              <Nav.Link as={Link} to="/WebcamCapture/">Vin-decode</Nav.Link>
+            </CustomTooltip>
+          </Nav.Item>   
+          <Nav.Item>
+            <CustomTooltip tooltipText="Digital Inspection Page">
               <Nav.Link as={Link} to="/Inspection/">Inspection</Nav.Link>
             </CustomTooltip>
           </Nav.Item>       
@@ -83,6 +95,7 @@ function NavBar(){
         </Nav>
       </Navbar.Collapse>
     </Navbar>
+    </div>
     </>
   );
 }

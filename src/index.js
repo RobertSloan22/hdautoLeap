@@ -16,8 +16,8 @@ import CustomerEntry from './CustomerEntry';
 import { CustomerProvider } from './CustomerContext'; // Import CustomerProvider
 import Customers from './Customers'; // Import Customers
 import Inspection from './Inspection';
-import WebcamCapture from './WebcamCapture';
 import ListGroup from './ListGroup';
+import ChatComponent from './ChatComponent'; // Import ChatComponent`
 function App() {
   return (
     <HashRouter>
@@ -39,7 +39,7 @@ function App() {
                   <Route path="/CustomerEntry/" element={<CustomerEntry />} />
                   <Route path="/Customers/" element={<Customers />} /> {/* Add Customers route */} 
                   <Route path="/Inspection/" element={<Inspection />} /> {/* Add Inspection route */} 
-                  <Route path="/WebcamCapture/" element={<WebcamCapture />} /> {/* Add WebcamCapture route */}
+                  <Route path="/ChatComponent/" element={<ChatComponent />} /> {/* Add WebcamCapture route */}
                   <Route path="/ListGroup/" element={<ListGroup />} /> {/* Add ListGroup route */}
                 </Routes>
               </div>

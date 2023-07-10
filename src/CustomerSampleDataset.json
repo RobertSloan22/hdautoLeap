@@ -1,0 +1,50 @@
+[
+    {
+        "CustomerID": 1,
+        "FirstName": "John",
+        "LastName": "Doe",
+        "PhoneNumber": "555-123-4567",
+        "Address": {
+            "Street": "123 Main St",
+            "City": "New York",
+            "State": "NY",
+            "Zipcode": "10001"
+        },
+        "Vehicle": {
+            "VIN": "1HGCM82633A123456",
+            "ProductionYear": 2018,
+            "Make": "Honda",
+            "Model": "Accord",
+            "TrimPackage": "EX-L",
+            "Odometer": 36000,
+            "Color": "Silver",
+            "EngineSize": "2.4L",
+            "DriveType": "Front-Wheel Drive",
+            "HybridOrStandard": "Standard"
+        }
+    },
+    {
+        "CustomerID": 2,
+        "FirstName": "Jane",
+        "LastName": "Smith",
+        "PhoneNumber": "555-987-6543",
+        "Address": {
+            "Street": "456 Elm St",
+            "City": "Los Angeles",
+            "State": "CA",
+            "Zipcode": "90001"
+        },
+        "Vehicle": {
+            "VIN": "5YJ3E1EA9KF123456",
+            "ProductionYear": 2020,
+            "Make": "Tesla",
+            "Model": "Model 3",
+            "TrimPackage": "Standard Range Plus",
+            "Odometer": 24000,
+            "Color": "Red",
+            "EngineSize": "Electric",
+            "DriveType": "All-Wheel Drive",
+            "HybridOrStandard": "Electric"
+        }
+    }
+]

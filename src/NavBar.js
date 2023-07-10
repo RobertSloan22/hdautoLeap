@@ -68,8 +68,8 @@ function NavBar(){
             </CustomTooltip>
           </Nav.Item>     
           <Nav.Item>
-            <CustomTooltip tooltipText="ComputerVision Vin Decoder">
-              <Nav.Link as={Link} to="/WebcamCapture/">Vin-decode</Nav.Link>
+            <CustomTooltip tooltipText="ChatComponent">
+              <Nav.Link as={Link} to="/ChatComponent/">ChatComponent</Nav.Link>
             </CustomTooltip>
           </Nav.Item>   
           <Nav.Item>

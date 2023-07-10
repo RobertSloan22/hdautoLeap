@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Home.module.css';
-
+import Iframe from './Iframe';
+import Iframe2 from './Iframe2';
 function Home() {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [appointments, setAppointments] = useState([]);
@@ -48,10 +49,14 @@ function Home() {
           <h5 className="card-title">{currentDateTime.toLocaleString()}</h5>
           <h1>HD-Auto-Data Platform </h1>
           <p className="lead"></p>
-          <a href="#/Login/" className="btn btn-primary">Go to Account </a>
+          <a href="https://robertsloan22.github.io/harlemdivisionautorepair" className="btn btn-primary">Harlem & Division Auto Repair Public Website </a>
+
         </div>
       </div>
       <div className={styles.item3}>
+        < Iframe/>
+        <div className="b-example-divider"></div>
+        < Iframe2/>
         {/* Add content for item2 here */}
       </div>
       <div className={styles.item2}>
@@ -74,32 +79,25 @@ function Home() {
         </ul>
       </div>
       <div className={styles.item4}>
- <a href="https://robertsloan22.github.io/RobertSloan22.io" className="btn btn-primary"> Robert Sloan Webpage 1 </a>
-        <a href="https://robertsloan22.github.io/PatrickSloanPhotography.io" className="btn btn-primary">Patrick Sloan's Photography Website</a>
+      <a href="https://robertsloan22.github.io/harlemdivisionautorepair" className="btn btn-primary">Harlem Division Auto Repair Website Version 0.1</a>
 
-        <a href="https://robertsloan22.github.io/ISS-realtime-location" className="btn btn-primary">International Space Station Real Time Tracker </a>
+        <a href="https://auth.deployscript.com/portal" className="btn btn-primary">Deploy Script </a>
+        <a href="https://dev.azure.com/sloanaf2016/?acquisitionId=8f6bb7e9-a1ac-407f-ad48-b5b0c53d8046&acquisition=true" className="btn btn-primary">AZURE DASHBOARD</a>
+        <a href="https://cloud.digitalocean.com/projects/40a8ad5d-1307-4e78-8258-e0c0005e101a/resources?i=f3b5b7" className="btn btn-primary">DIGITAL OCEAN DASHBOARD </a>
+        <a href="https://us-east-2.console.aws.amazon.com/console/home?region=us-east-2#" className="btn btn-primary">AMAZON WEB SERVICES CONSOLE </a>
+        <a href="https://chat.openai.com/?model=gpt-4-plugins" className="btn btn-primary">CHATGPT-4 DEVELOPER CONSOLE </a>
+        <a href="https://lucid.app/documents#/documents?folder_id=home" className="btn btn-primary">LUCIDCHART DASHBOARD </a>
+        <a href="https://classroom.emeritus.org/courses/1480/modules" className="btn btn-primary">M.I.T DASHBOARD</a>
+        <a href="https://github.com/RobertSloan22" className="btn btn-primary">GITHUB-ROBERTSLOAN22</a>
 
-        <a href="https://robertsloan22.github.io/PatrickSloanPhotography.io" className="btn btn-primary">Patrick Sloan's Photography Website</a>
 
-
-        <a href="https://robertsloan22.github.io/HappyMothersday" className="btn btn-primary">Happy Mothersday </a>
-        <a href="https://robertsloan22.github.io/projects001" className="btn btn-primary">Resource Tool and Project Showcase RobertSloan </a>
-        <a href="https://robertsloan22.github.io/harlemdivisionautorepair" className="btn btn-primary">Harlem Division Auto Repair Website Version 0.1</a>
-
-        <a href="https://robertsloan22.github.io/ISS-realtime-location" className="btn btn-primary">Go to Account </a>
-        <a href="#//" className="btn btn-primary">Go to Account </a>
       </div><div className="card-body">
         <h5 className="card-title">{currentDateTime.toLocaleString()}</h5>
         <h1>HD-Auto-Data Platform </h1>
         <p className="lead"></p>
         <a href="https://robertsloan22.github.io/ISS-realtime-location" className="btn btn-primary">Go to Account </a>
       </div>
-      <div className="card-body">
-        <h5 className="card-title">{currentDateTime.toLocaleString()}</h5>
-        <h1>HD-Auto-Data Platform </h1>
-        <p className="lead"></p>
-        <a href="https://robertsloan22.github.io/ISS-realtime-location" className="btn btn-primary">Go to Account </a>
-      </div>
+    
     </div>
   );
 }

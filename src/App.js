@@ -10,11 +10,11 @@ import Login from './Login';
 import CustomerEntry from './CustomerEntry';
 import Customers from './Customers'; // Import Customers
 import Inspection from './Inspection'; // Import Inspection
-import WebcamCapture from './WebcamCapture'; // Import WebcamCapture
 import { AuthProvider } from './AuthProvider';
 import { UserProvider } from './Context';
 import { BalanceProvider } from './BalanceContext';
 import { CustomerProvider } from './CustomerContext';
+import ChatComponent from './ChatComponent'; // Import ChatComponent
 
 function App() {
   return (
@@ -36,7 +36,7 @@ function App() {
                   <Route path="/CustomerEntry/" element={<CustomerEntry />} />
                   <Route path="/Customers/" element={<Customers />} />
                   <Route path="/Inspection/" element={<Inspection />} />
-                  <Route path="/WebcamCapture/" element={<WebcamCapture />} />
+                  <Route path="/ChatComponent/" element={<ChatComponent />} />
                 </Routes>
               </div>
             </BalanceProvider>

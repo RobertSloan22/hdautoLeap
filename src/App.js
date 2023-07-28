@@ -14,7 +14,8 @@ import { AuthProvider } from './AuthProvider';
 import { UserProvider } from './Context';
 import { BalanceProvider } from './BalanceContext';
 import { CustomerProvider } from './CustomerContext';
-import ChatComponent from './ChatComponent'; // Import ChatComponent
+import ChatGPT from './ChatGPT'; // Import ChatGPT 
+import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
                   <Route path="/CustomerEntry/" element={<CustomerEntry />} />
                   <Route path="/Customers/" element={<Customers />} />
                   <Route path="/Inspection/" element={<Inspection />} />
-                  <Route path="/ChatComponent/" element={<ChatComponent />} />
+                  <Route path="/ChatGPT/" element={<ChatGPT />} />
                 </Routes>
               </div>
             </BalanceProvider>

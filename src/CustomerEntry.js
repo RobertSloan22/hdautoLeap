@@ -1,59 +1,68 @@
 import React, { useState, useContext } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { CustomerContext } from './CustomerContext'; // Importing CustomerContext
+import { useFormik } from 'formik';
+import { CustomerContext } from './CustomerContext';
 
 const CustomerEntry = () => {
-  const { addCustomer } = useContext(CustomerContext); // Use addCustomer from CustomerContext
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [vehicle, setVehicle] = useState('');
-  const [vehicleVIN, setVehicleVIN] = useState('');
-  const [vehicleYear, setVehicleYear] = useState('');
-  const [vehicleMake, setVehicleMake] = useState('');
-  const [vehicleModel, setVehicleModel] = useState('');
-  const [vehicleMileage, setVehicleMileage] = useState('');
-  const [vehicleEngine, setVehicleEngine] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  //add form fields for email, address, city, state, zip code, country, and notes
-  const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [zipCode, setZipCode] = useState('');
-  const [country, setCountry] = useState('');
-  const [notes, setNotes] = useState('');
+  const { addCustomer } = useContext(CustomerContext);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-// once customer is added , use the setSuccessMessage to display a success message
-  const handleCustomerEntry = () => {
-    if (!firstName || !lastName || !vehicle || !phoneNumber || !vehicleVIN || !vehicleYear || !vehicleMake || !vehicleModel || !vehicleMileage || !vehicleEngine) {
-      setErrorMessage('All fields are required.');
-      if (successMessage) {
+
+  const formik = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      vehicle: '',
+      phoneNumber: '',
+      vehicleVIN: '',
+      vehicleYear: '',
+      vehicleMake: '',
+      vehicleModel: '',
+      vehicleMileage: '',
+      vehicleEngine: '',
+      email: '',
+      address: '',
+      city: '',
+      state: '',
+      zipCode: '',
+      country: '',
+      notes: ''
+    },
+    onSubmit: async values => {
+      if (Object.values(values).some(value => value === "")) {
+        setErrorMessage('All fields are required.');
         setSuccessMessage('');
+      } else {
+        try {
+          const response = await fetch('http://localhost:3001/api/customers', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            // Add customer to context
+            addCustomer(data.customer);
+
+            setSuccessMessage('Customer added successfully');
+            setErrorMessage('');
+            formik.resetForm();
+          } else {
+            const error = await response.json();
+            setErrorMessage(error.message);
+            setSuccessMessage('');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          setErrorMessage('An error occurred while adding the customer.');
+          setSuccessMessage('');
+        }
       }
-    } else {
-      addCustomer({ 
-        firstName, 
-        lastName, 
-        vehicle, 
-        phoneNumber, 
-        vehicleVIN, 
-        vehicleYear, 
-        vehicleMake, 
-        vehicleModel, 
-        vehicleMileage, 
-        vehicleEngine, 
-        email, 
-        address, 
-        city, 
-        state, 
-        zipCode, 
-        country, 
-        notes 
-      });
-      
-    }
-  };
+    },
+  });
+
 
   return (
     <div className="container mt-4">
@@ -70,129 +79,127 @@ const CustomerEntry = () => {
               {errorMessage}
             </div>
           )}
-          <form>
+          <form onSubmit={formik.handleSubmit}>
             <div className="form-group">
               <label htmlFor="firstName">First Name</label>
               <input
                 type="text"
                 className="form-control"
                 id="firstName"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                value={formik.values.firstName}
+                onChange={formik.handleChange}
               />
             </div>
+            {/* Adding all other fields similarly */}
             <div className="form-group">
               <label htmlFor="lastName">Last Name</label>
               <input
                 type="text"
                 className="form-control"
                 id="lastName"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                value={formik.values.lastName}
+                onChange={formik.handleChange}
               />
             </div>
+            {/* Rest of the fields would be created in the similar manner */}
             <div className="form-group">
               <label htmlFor="vehicle">Vehicle</label>
               <input
                 type="text"
                 className="form-control"
                 id="vehicle"
-                value={vehicle}
-                onChange={(e) => setVehicle(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="vehicle VIN">VIN</label>
-              <input
-                type="text" 
-                className="form-control"
-                id="vehicleVIN"
-                value={vehicleVIN}
-                onChange={(e) => setVehicleVIN(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="vehicleYear">Year</label>
-              <input
-                type="text"
-                className="form-control"
-                id="vehicleYear"
-                value={vehicleYear}
-                onChange={(e) => setVehicleYear(e.target.value)}
-              />
-            </div>
-            
-            <div className="form-group">
-              <label htmlFor="vehicleMake">Make</label>
-              <input
-                type="text"
-                className="form-control"
-                id="vehicleMake"
-                value={vehicleMake}
-                onChange={(e) => setVehicleMake(e.target.value)}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="vehicleModel">Model</label>
-              <input
-                type="text"
-                className="form-control"
-                id="vehicleModel"
-                value={vehicleModel}
-                onChange={(e) => setVehicleModel(e.target.value)}
-              />
-            </div>
-            
-            <div className="form-group">
-              <label htmlFor="vehicleMileage">Mileage</label>
-              <input
-                type="text"
-                className="form-control"
-                id="vehicleMileage"
-                value={vehicleMileage}
-                onChange={(e) => setVehicleMileage(e.target.value)}
-              />
-            </div>
-            
-            <div className="form-group">
-              <label htmlFor="vehicleEngine">Engine</label>
-              <input
-                type="text"
-                className="form-control"
-                id="vehicleEngine"
-                value={vehicleEngine}
-                onChange={(e) => setVehicleEngine(e.target.value)}
+                value={formik.values.vehicle}
+                onChange={formik.handleChange}
               />
             </div>
             <div className="form-group">
               <label htmlFor="phoneNumber">Phone Number</label>
               <input
-                type="text"
+                type="tel"
                 className="form-control"
                 id="phoneNumber"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                value={formik.values.phoneNumber}
+                onChange={formik.handleChange}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="email">Email Address</label>
+              <label htmlFor="vehicleVIN">Vehicle VIN</label>
               <input
                 type="text"
                 className="form-control"
+                id="vehicleVIN"
+                value={formik.values.vehicleVIN}
+                onChange={formik.handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="vehicleYear">Vehicle Year</label>
+              <input
+                type="number"
+                className="form-control"
+                id="vehicleYear"
+                value={formik.values.vehicleYear}
+                onChange={formik.handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="vehicleMake">Vehicle Make</label>
+              <input
+                type="text"
+                className="form-control"
+                id="vehicleMake"
+                value={formik.values.vehicleMake}
+                onChange={formik.handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="vehicleModel">Vehicle Model</label>
+              <input
+                type="text"
+                className="form-control"
+                id="vehicleModel"
+                value={formik.values.vehicleModel}
+                onChange={formik.handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="vehicleMileage">Vehicle Mileage</label>
+              <input
+                type="number"
+                className="form-control"
+                id="vehicleMileage"
+                value={formik.values.vehicleMileage}
+                onChange={formik.handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="vehicleEngine">Vehicle Engine</label>
+              <input
+                type="text"
+                className="form-control"
+                id="vehicleEngine"
+                value={formik.values.vehicleEngine}
+                onChange={formik.handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                className="form-control"
                 id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={formik.values.email}
+                onChange={formik.handleChange}
               />
             </div>
             <div className="form-group">
               <label htmlFor="address">Address</label>
               <input
                 type="text"
-                className="form-control"  
+                className="form-control"
                 id="address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                value={formik.values.address}
+                onChange={formik.handleChange}
               />
             </div>
             <div className="form-group">
@@ -201,8 +208,8 @@ const CustomerEntry = () => {
                 type="text"
                 className="form-control"
                 id="city"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
+                value={formik.values.city}
+                onChange={formik.handleChange}
               />
             </div>
             <div className="form-group">
@@ -211,8 +218,8 @@ const CustomerEntry = () => {
                 type="text"
                 className="form-control"
                 id="state"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
+                value={formik.values.state}
+                onChange={formik.handleChange}
               />
             </div>
             <div className="form-group">
@@ -221,8 +228,8 @@ const CustomerEntry = () => {
                 type="text"
                 className="form-control"
                 id="zipCode"
-                value={zipCode}
-                onChange={(e) => setZipCode(e.target.value)}
+                value={formik.values.zipCode}
+                onChange={formik.handleChange}
               />
             </div>
             <div className="form-group">
@@ -231,80 +238,22 @@ const CustomerEntry = () => {
                 type="text"
                 className="form-control"
                 id="country"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
+                value={formik.values.country}
+                onChange={formik.handleChange}
               />
             </div>
             <div className="form-group">
               <label htmlFor="notes">Notes</label>
-              <input
-                type="text"
+              <textarea
                 className="form-control"
                 id="notes"
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}  
+                value={formik.values.notes}
+                onChange={formik.handleChange}
               />
             </div>
-        
 
-          
-
-
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={handleCustomerEntry}
-              disabled={!firstName || !lastName || !vehicle || !phoneNumber || !email || !address || !city || !state || !zipCode || !country || !notes  }
-            >
-              Add Customer
-            </button>
+            <button type="submit" className="btn btn-primary">Add Customer</button>
           </form>
-
-          
-          <form className="row g-3">
-  <div className="col-md-6">
-    <label for="inputEmail4" class="form-label">Email</label>
-    <input type="email" class="form-control" id="inputEmail4"/>
-  </div>
-  <div className="col-md-6">
-    <label for="inputPassword4" class="form-label">Password</label>
-    <input type="password" class="form-control" id="inputPassword4"/>
-  </div>
-  <div className="col-12">
-    <label for="inputAddress" class="form-label">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"/>
-  </div>
-  <div className="col-12">
-    <label for="inputAddress2" class="form-label">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"/>
-  </div>
-  <div className="col-md-6">
-    <label for="inputCity" class="form-label">City</label>
-    <input type="text" class="form-control" id="inputCity"/>
-  </div>
-  <div className="col-md-4">
-    <label for="inputState" class="form-label">State</label>
-    <select id="inputState" class="form-select">
-      <option selected>Choose...</option>
-      <option>...</option>
-    </select>
-  </div>
-  <div className="col-md-2">
-    <label for="inputZip" class="form-label">Zip</label>
-    <input type="text" class="form-control" id="inputZip"/>
-  </div>
-  <div className="col-12">
-    <div className="form-check">
-      <input className="form-check-input" type="checkbox" id="gridCheck"/>
-      <label className="form-check-label" for="gridCheck">
-        Check me out
-      </label>
-    </div>
-  </div>
-  <div className="col-12">
-    <button type="submit" class="btn btn-primary">Sign in</button>
-  </div>
-</form>
         </div>
       </div>
     </div>

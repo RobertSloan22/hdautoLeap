@@ -3,7 +3,7 @@ import { CustomerContext } from './CustomerContext';
 import { Modal, Button } from 'react-bootstrap';
 
 const Customers = () => {
-  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [selectedCustomer, setSelectedCustomer] = useState(Customers[0]);
   const { customers } = useContext(CustomerContext);
 
   const handleShowDetails = (customer) => {

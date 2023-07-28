@@ -68,8 +68,8 @@ function NavBar(){
             </CustomTooltip>
           </Nav.Item>     
           <Nav.Item>
-            <CustomTooltip tooltipText="ChatComponent">
-              <Nav.Link as={Link} to="/ChatComponent/">ChatComponent</Nav.Link>
+            <CustomTooltip tooltipText="ChatGPT">
+              <Nav.Link as={Link} to="/ChatGPT/">ChatComponent</Nav.Link>
             </CustomTooltip>
           </Nav.Item>   
           <Nav.Item>

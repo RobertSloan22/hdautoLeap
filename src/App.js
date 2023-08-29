@@ -1,20 +1,20 @@
 import React from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import NavBar from './NavBar';
-import Home from './Home';
-import CreateAccount from './CreateAccount';
-import Deposit from './Deposit';
-import Withdraw from './Withdraw';
-import AllData from './AllData';
-import Login from './Login';
-import CustomerEntry from './CustomerEntry';
-import Customers from './Customers'; // Import Customers
-import Inspection from './Inspection'; // Import Inspection
-import { AuthProvider } from './AuthProvider';
-import { UserProvider } from './Context';
-import { BalanceProvider } from './BalanceContext';
-import { CustomerProvider } from './CustomerContext';
-import ChatGPT from './ChatGPT'; // Import ChatGPT 
+import NavBar from './components/NavBar';
+import Home from './components/Home';
+import CreateAccount from './components/CreateAccount';
+import Deposit from './components/Deposit';
+import Withdraw from './components/Withdraw';
+import AllData from './components/AllData';
+import Login from './components/Login';
+import CustomerEntry from './components/CustomerEntry';
+import Customers from './components/Customers'; // Import Customers
+import Inspection from './components/Inspection'; // Import Inspection
+import { AuthProvider } from './components/AuthProvider';
+import { UserProvider } from './components/Context';
+import { BalanceProvider } from './components/BalanceContext';
+import { CustomerProvider } from './components/CustomerContext';
+import ChatGPT from './components/ChatGPT'; // Import ChatGPT 
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
     <HashRouter>
       <AuthProvider>
         <NavBar/>
+        <ChatGPT/>
         <CustomerProvider>
           <UserProvider>
             <BalanceProvider>
